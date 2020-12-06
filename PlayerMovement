@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float Speed;
     private Rigidbody2D Player;
     public Animator PlayerAnimator;
+    /* ELIMINA I DUE "/*" se ti servono le animazioni 
     public string IdleAnimationName;
     public string FrontAnimationName;
     public string BackAnimationName;
-    public string SideAnimationName;
+    public string SideAnimationName;*/
     #endregion
 
     private void Start()
@@ -39,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         Direction.x = Input.GetAxisRaw("Horizontal");
         Direction.y = Input.GetAxisRaw("Vertical");
         #endregion
-
+        /*ELIMINA I DUE "/*" se ti servono le animazioni 
         #region Animating The Player
         if (Input.GetAxisRaw("Vertical") > 0)
         {
@@ -78,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
         #endregion
-
+        */
     }
 
     private void FixedUpdate()
