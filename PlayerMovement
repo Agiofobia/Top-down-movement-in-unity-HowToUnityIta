@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 Direction;
     public float Speed;
     private Rigidbody2D Player;
-    public Animator PlayerAnimator;
     /* ELIMINA I DUE "/*" se ti servono le animazioni 
+    public Animator PlayerAnimator;
     public string IdleAnimationName;
     public string FrontAnimationName;
     public string BackAnimationName;
