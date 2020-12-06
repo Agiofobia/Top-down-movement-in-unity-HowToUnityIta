@@ -1,2 +1,2 @@
-# Top-down-movement-in-unity-HowToUnityIta
+# 2D-Top-down-movement-in-unity-HowToUnityIta
 A simple top down movement script 
