@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     #region Variables
-    public Vector2 Direction;
+    private Vector2 Direction;
     public float Speed;
     private Rigidbody2D Player;
     public Animator PlayerAnimator;
