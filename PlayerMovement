@@ -1,0 +1,93 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Rigidbody2D))]
+
+public class PlayerMovement : MonoBehaviour
+{
+
+    #region Variables
+    public Vector2 Direction;
+    public float Speed;
+    private Rigidbody2D Player;
+    public Animator PlayerAnimator;
+    public string IdleAnimationName;
+    public string FrontAnimationName;
+    public string BackAnimationName;
+    public string SideAnimationName;
+    #endregion
+
+    private void Start()
+    {
+
+        #region RigidBody2D Set Up
+        Player = GetComponent<Rigidbody2D>();
+        Player.bodyType = RigidbodyType2D.Kinematic;
+        Player.simulated = true;
+        Player.useFullKinematicContacts = false;
+        Player.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        Player.sleepMode = RigidbodySleepMode2D.StartAwake;
+        Player.interpolation = RigidbodyInterpolation2D.Interpolate;
+        Player.constraints = RigidbodyConstraints2D.FreezeRotation;
+        #endregion
+
+    }
+
+    private void Update()
+    {
+
+        #region Getting Axis Of The Direction Vector
+        Direction.x = Input.GetAxisRaw("Horizontal");
+        Direction.y = Input.GetAxisRaw("Vertical");
+        #endregion
+
+        #region Animating The Player
+        if (Input.GetAxisRaw("Vertical") > 0)
+        {
+
+            PlayerAnimator.Play(BackAnimationName);
+
+        }
+
+        if (Input.GetAxisRaw("Vertical") < 0)
+        {
+
+            PlayerAnimator.Play(FrontAnimationName);
+
+        }
+
+        if (Input.GetAxisRaw("Horizontal") > 0)
+        {
+
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+            PlayerAnimator.Play(SideAnimationName);
+
+        }
+
+        if (Input.GetAxisRaw("Horizontal") < 0)
+        {
+
+            transform.rotation = new Quaternion(0, 180, 0, 0);
+            PlayerAnimator.Play(SideAnimationName);
+
+        }
+
+        if (Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)
+        {
+
+            PlayerAnimator.Play(IdleAnimationName);
+
+        }
+        #endregion
+
+    }
+
+    private void FixedUpdate()
+    {
+
+        #region Moving The Player
+        Player.velocity = Direction * Speed * Time.fixedDeltaTime;
+        #endregion
+
+    }
+
+}
